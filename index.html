@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Katalog Dekoruma Samarinda</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="sticky-controls">
+        <header>
+            <div class="header-container">
+                <img src="logo-dekoruma samarinda.png" alt="Dekoruma Samarinda" class="header-logo">
+                
+                <button class="menu-btn" onclick="bukaMenuBurger()">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </button>
+            </div>
+        </header>
+
+        <div class="filter-container">
+            <h1 style="font-size: 1.1rem; color: var(--text-main); font-weight: 700; margin-bottom: 5px; text-align: left;">Katalog by Rama</h1>
+            <div style="display:flex; gap: 8px;">
+                <input type="text" id="searchInput" placeholder="Cari sofa, meja, kursi...">
+                <select id="sortOrder">
+                    <option value="new">Urutkan: Terbaru</option>
+                    <option value="low">Harga Terendah</option>
+                    <option value="high">Harga Tertinggi</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <main id="product-container"></main>
+           
+
+    <div id="modalMenu" class="modal-burger" style="display: none;">
+        <div class="isi-modal-burger">
+            <div class="menu-header">
+                <h2>Menu Katalog</h2>
+                <span onclick="tutupMenu()" class="close-burger">&times;</span>
+            </div>
+            <div class="menu-body">
+                <p class="menu-label">PILIH KATEGORI:</p>
+                <div class="category-list-vertical">
+                    <button class="cat-item-large active" onclick="filterKategori('semua', this)">Semua Produk</button>
+                    <button class="cat-item-large" onclick="filterKategori('Sofa', this)">Sofa</button>
+                    <button class="cat-item-large" onclick="filterKategori('Meja', this)">Meja</button>
+                    <button class="cat-item-large" onclick="filterKategori('Kursi', this)">Kursi</button>
+                    <button class="cat-item-large" onclick="filterKategori('Lemari', this)">Lemari</button>
+                </div>
+            </div>
+            <div class="menu-footer">
+                <button class="btn-kembali-katalog" onclick="tutupMenu()">KEMBALI KE KATALOG</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modalDetail" class="modal-detail" style="display: none;">
+        <div class="isi-modal-detail">
+            <span class="close-detail" onclick="tutupDetail()">&times;</span>
+            <div id="kontenDetail"></div>
+        </div>
+    </div>
+
+    <div id="modalForm" class="modal-form" style="display: none;">
+        <div class="isi-modal-form">
+            <h3 id="namaProdukTerpilih" style="color:var(--price-color); margin-bottom:5px; font-size: 0.85rem;"></h3>
+            <p id="tampilanTotal" style="font-weight: bold; font-size: 1.2rem; margin-bottom: 15px; color: var(--text-main); border-bottom: 2px solid #f0f0f0; padding-bottom: 10px;"></p>
+            
+            <div class="form-grid">
+                <input type="text" id="fNama" placeholder="Nama Lengkap" required>
+                <input type="email" id="fEmail" placeholder="Alamat Email" required>
+                <input type="number" id="fHp" placeholder="Nomor WhatsApp" required>
+                <textarea id="fAlamat" placeholder="Alamat Lengkap (Jl, No, Kota)" rows="2" required></textarea>
+                
+                <div class="input-group">
+                    <label>Opsi Pengiriman:</label>
+                    <select id="fPengiriman" onchange="hitungOtomatis()">
+                        <option value="reguler">Reguler (Gratis)</option>
+                        <option value="instan">Instan</option>
+                    </select>
+                    <p id="ketPengiriman" class="sub-label">Sampai dalam 7-10 hari kerja</p>
+                </div>
+
+                <div class="input-group">
+                    <label>Opsi Perakitan:</label>
+                    <select id="fRakit" onchange="hitungOtomatis()">
+                        <option value="tidak">Tanpa Perakitan</option>
+                        <option value="ya" id="optRakit">Jasa Rakit</option>
+                    </select>
+                </div>
+            </div>
+
+            <div style="display: flex; gap: 10px; margin-top: 20px;">
+                <button onclick="tutupModalForm()" class="btn-batal">BATAL</button>
+                <button onclick="kirimPemesanan()" class="btn-kirim">PESAN VIA WA</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

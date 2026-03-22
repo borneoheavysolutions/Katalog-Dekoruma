@@ -1,0 +1,155 @@
+:root {
+    --bg-body: #F3F1ED;
+    --bg-card: #FFFFFF;
+    --text-main: #1C2A39; /* Warna header biru gelap */
+    --accent: #1C2A39;
+    --price-color: #BC6C25;
+    --price-old: #A4A99B;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+body { background-color: var(--bg-body); padding-bottom: 30px; }
+
+/* FIX: Navbar & Sticky */
+.sticky-controls { position: sticky; top: 0; z-index: 1000; background: var(--bg-body); border-bottom: 1px solid #e0ddd5; }
+
+/* --- HEADER & LOGO TETAP (VERSI MADHAN) --- */
+header { 
+    background-color: var(--text-main); 
+    padding: 0.65px 0; 
+    position: sticky; 
+    top: 0; 
+    z-index: 1200; 
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    min-height: 40px; 
+    display: flex;
+    align-items: center;
+}
+
+.header-container {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 5px;
+    width: 100%;
+}
+
+.header-logo {
+    height: 135px; 
+    width: auto;
+    max-width: 75%; 
+    object-fit: contain;
+    filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.2)); 
+}
+
+.menu-btn {
+    position: absolute;
+    right: 15px; 
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.bar {
+    width: 24px; 
+    height: 2px;
+    background-color: white;
+    margin: 5px 0; 
+    border-radius: 2px;
+}
+
+/* Controls & Filter */
+.filter-container { max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; gap: 8px; padding: 10px 15px; }
+#searchInput, #sortOrder { padding: 10px; border: 1px solid #ddd; border-radius: 6px; font-size: 0.8rem; outline: none; flex: 1; }
+
+/* Grid Produk */
+#product-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 10px; max-width: 1000px; margin: 0 auto; }
+.product-card { background: var(--bg-card); border: 1px solid #e0ddd5; border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; position: relative; }
+.clickable-area { cursor: pointer; }
+.product-card img { width: 100%; aspect-ratio: 1/1; object-fit: cover; }
+.product-info { padding: 10px; }
+.product-info h3 { font-size: 0.7rem; height: 2.1rem; overflow: hidden; line-height: 1rem; color: #1c2a39; }
+.price-tag { color: var(--price-color); font-weight: bold; font-size: 0.85rem; margin-top: 2px; }
+.harga-coret { text-decoration: line-through; color: var(--price-old); font-size: 0.65rem; margin-right: 4px; }
+
+/* Action Buttons */
+.action-buttons { display: flex; gap: 4px; padding: 0 10px 10px 10px; margin-top: auto; }
+.btn-wa { background: var(--accent); color: #fff; border: none; padding: 8px; font-weight: bold; flex: 2; border-radius: 4px; cursor: pointer; font-size: 0.7rem; }
+.btn-share { background: #f0f0f0; border: 1px solid #ddd; padding: 8px; border-radius: 4px; flex: 1; font-size: 0.7rem; cursor: pointer; }
+
+/* Modal Burger */
+.modal-burger { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fff; z-index: 5000; display: none; flex-direction: column; }
+.isi-modal-burger { padding: 30px 20px; flex: 1; display: flex; flex-direction: column; }
+.menu-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; padding-bottom: 15px; margin-bottom: 25px; }
+.close-burger { font-size: 2rem; color: #333; cursor: pointer; line-height: 1; }
+.category-list-vertical { display: flex; flex-direction: column; gap: 10px; }
+.cat-item-large { padding: 14px; border: 1px solid #eee; border-radius: 8px; background: #f8f8f8; font-weight: 600; font-size: 0.9rem; text-align: left; cursor: pointer; }
+.cat-item-large.active { background: var(--accent); color: #fff; }
+.menu-footer { padding: 15px 20px; border-top: 1px solid #eee; }
+.btn-kembali-katalog { width: 100%; padding: 14px; background: var(--accent); color: #fff; border: none; border-radius: 8px; font-weight: bold; font-size: 0.9rem; cursor: pointer; }
+
+/* Modal Detail */
+.modal-detail { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); backdrop-filter: blur(4px); z-index: 4000; display: none; align-items: flex-end; }
+.isi-modal-detail { background: #fff; width: 100%; max-width: 450px; border-top-left-radius: 20px; border-top-right-radius: 20px; max-height: 90vh; overflow-y: auto; position: relative; }
+.close-detail { position: absolute; top: 12px; right: 15px; font-size: 2rem; color: #fff; text-shadow: 0 0 8px rgba(0,0,0,0.5); z-index: 10; cursor: pointer; }
+.detail-img { width: 100%; aspect-ratio: 1/1; object-fit: cover; }
+.detail-body { padding: 20px; }
+.spec-list { background: #f9f9f9; padding: 12px; border-radius: 8px; margin-bottom: 15px; }
+.spec-item { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #eee; font-size: 0.8rem; }
+.btn-wa-full { width: 100%; padding: 15px; background: var(--accent); color: #fff; border: none; border-radius: 8px; font-weight: bold; font-size: 0.9rem; cursor: pointer; }
+
+/* --- UPDATE FORM ELEMENTS (MODERN GLASS STYLE) --- */
+.modal-form { 
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+    background: rgba(28, 42, 57, 0.6); /* Backdrop biru transparan */
+    backdrop-filter: blur(8px); 
+    z-index: 4000; display: none; 
+    align-items: center; /* Form melayang di tengah */
+    justify-content: center;
+    padding: 20px; 
+}
+
+.isi-modal-form { 
+    background: #fff; width: 100%; max-width: 400px; 
+    border-radius: 20px; /* Lebih rounded */
+    padding: 25px; 
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    max-height: 90vh; overflow-y: auto; position: relative;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.form-grid { display: flex; flex-direction: column; gap: 10px; }
+.form-grid input, .form-grid textarea, .form-grid select { 
+    padding: 12px; border: 1.5px solid #eee; border-radius: 10px; 
+    font-size: 0.85rem; width: 100%; background-color: #fcfcfc;
+    transition: all 0.3s ease;
+}
+
+.form-grid input:focus, .form-grid textarea:focus, .form-grid select:focus {
+    border-color: var(--price-color);
+    background-color: #fff;
+    box-shadow: 0 0 0 4px rgba(188, 108, 37, 0.1);
+    outline: none;
+}
+
+.input-group label { font-size: 0.75rem; font-weight: bold; color: #555; display: block; margin-bottom: 5px; }
+.sub-label { font-size: 0.65rem; color: #888; margin-top: 3px; }
+
+.btn-batal { flex: 1; padding: 12px; border: 1px solid #ddd; border-radius: 10px; background: #f9f9f9; font-weight: bold; cursor: pointer; }
+.btn-kirim { 
+    flex: 2; padding: 12px; background: var(--price-color); 
+    color: #fff; border: none; border-radius: 10px; 
+    font-weight: bold; cursor: pointer; text-transform: uppercase;
+    transition: transform 0.2s;
+}
+.btn-kirim:active { transform: scale(0.98); }
+
+.fade-in { animation: fadeIn 0.4s ease-out; }
+@keyframes fadeIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+
+@media (min-width: 768px) { #product-container { grid-template-columns: repeat(4, 1fr); gap: 15px; padding: 15px; } .filter-container { flex-direction: row; align-items: center; } }
+
